@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+    <link rel="stylesheet" href="styleestoque.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>FluxIA</h2>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active" data-target="dashboard-section"><span class="material-icons">dashboard</span> Painel</a></li>
+                <li><a href="usuario.html" data-target="users-section"><span class="material-icons">person</span> Usuários</a></li>
+                <li><a href="configuracao.html" data-target="settings-section"><span class="material-icons">settings</span> Configurações</a></li>
+                <li><a href="relatorio.html" data-target="reports-section"><span class="material-icons">bar_chart</span> Relatórios</a></li>
+            </ul>
+        </aside>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="header-title">
+                    <h1 id="main-header-title">Visão Geral do Painel</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span>Bem-vindo, Admin</span>
+                        <span class="material-icons">account_circle</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-sections">
+                <section id="dashboard-section" class="content-area">
+                    <div class="dashboard-cards">
+                        <div class="card">
+                            <div class="card-icon"><span class="material-icons">group</span></div>
+                            <div class="card-content">
+                                <h3>Total de Usuários</h3>
+                                <p>1.234</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon"><span class="material-icons">shopping_cart</span></div>
+                            <div class="card-content">
+                                <h3>Pedidos</h3>
+                                <p>567</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon"><span class="material-icons">attach_money</span></div>
+                            <div class="card-content">
+                                <h3>Receita</h3>
+                                <p>$12.345</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-icon"><span class="material-icons">analytics</span></div>
+                            <div class="card-content">
+                                <h3>Análises</h3>
+                                <p>Ver Detalhes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="data-table">
+                        <h2>Atividade Recente</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Ação</th>
+                                    <th>Usuário</th>
+                                    <th>Data</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>001</td>
+                                    <td>Login</td>
+                                    <td>Usuário A</td>
+                                    <td>2023-10-27</td>
+                                </tr>
+                                <tr>
+                                    <td>002</td>
+                                    <td>Relatório Criado</td>
+                                    <td>Usuário B</td>
+                                <td>2023-10-27</td>
+                                </tr>
+                                <tr>
+                                    <td>003</td>
+                                    <td>Configurações Atualizadas</td>
+                                    <td>Usuário C</td>
+                                    <td>2023-10-26</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="users-section" class="content-area hidden">
+                    <h2>Gerenciamento de Usuários</h2>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>Lista de Usuários</h3>
+                            <p>Aqui você pode visualizar, adicionar, editar e remover usuários.</p>
+                            </div>
+                    </div>
+                    <div class="data-table" style="margin-top: 20px;">
+                         <table>
+                            <thead>
+                                <tr>
+                                    <th>ID do Usuário</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>101</td>
+                                    <td>João Silva</td>
+                                    <td>joao.silva@example.com</td>
+                                    <td>Ativo</td>
+                                    <td><button class="button">Editar</button> <button class="button">Excluir</button></td>
+                                </tr>
+                                <tr>
+                                    <td>102</td>
+                                    <td>Maria Souza</td>
+                                    <td>maria.souza@example.com</td>
+                                    <td>Inativo</td>
+                                    <td><button class="button">Editar</button> <button class="button">Excluir</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section id="settings-section" class="content-area hidden">
+                    <h2>Configurações do Sistema</h2>
+                     <div class="card">
+                        <div class="card-content">
+                            <h3>Ajustes Gerais</h3>
+                            <p>Configure as opções gerais do sistema aqui.</p>
+                            </div>
+                    </div>
+                     <div class="data-table" style="margin-top: 20px;">
+                         <p>Opção 1: <input type="text" placeholder="Valor da Opção 1"></p>
+                         <p>Opção 2: <input type="checkbox"> Habilitar Recurso X</p>
+                         <button class="button" style="margin-top: 10px;">Salvar Configurações</button>
+                     </div>
+                </section>
+
+                <section id="reports-section" class="content-area hidden">
+                    <h2>Visualização de Relatórios</h2>
+                     <div class="card">
+                        <div class="card-content">
+                            <h3>Relatórios Gerados</h3>
+                            <p>Visualize diferentes relatórios sobre dados do sistema.</p>
+                            </div>
+                    </div>
+                     <div class="data-table" style="margin-top: 20px;">
+                         <p>Relatório de Vendas: <button class="button">Gerar</button></p>
+                         <p>Relatório de Usuários Ativos: <button class="button">Gerar</button></p>
+                     </div>
+                </section>
+
+                <section id="messages-section" class="content-area hidden">
+                    <h2>Caixa de Mensagens</h2>
+                     <div class="card">
+                        <div class="card-content">
+                            <h3>Suas Mensagens</h3>
+                            <p>Veja suas mensagens e notificações.</p>
+                            </div>
+                    </div>
+                     <div class="data-table" style="margin-top: 20px;">
+                         <ul>
+                             <li><strong>Assunto:</strong> Novo Pedido Recebido - <a href="#">Ver Detalhes</a></li>
+                             <li><strong>Assunto:</strong> Alerta de Sistema - <a href="#">Ver Detalhes</a></li>
+                             <li><strong>Assunto:</strong> Nova Mensagem de Usuário - <a href="#">Responder</a></li>
+                         </ul>
+                     </div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="scriptestoque.js"></script>
+</body>
+</html>

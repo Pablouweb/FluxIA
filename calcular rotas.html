@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Rotas - FluxIA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        input,
+        button,
+        select {
+            padding: 10px;
+            font-size: 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+        }
+
+        #map {
+            height: 500px;
+            width: 90%;
+            margin: 20px auto;
+            border: 2px solid white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        #info {
+            margin-top: 15px;
+            font-size: 18px;
+            animation: fadeIn 1s ease;
+        }
+
+        .rota-container {
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.07);
+            color: white;
+            max-width: 600px;
+            margin: auto;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+            animation: fadeInUp 1.2s ease;
+        }
+
+        .rota-container h1 {
+            margin-bottom: 20px;
+            font-size: 28px;
+            text-shadow: 0 0 5px rgba(0, 255, 255, 0.3);
+        }
+
+        .rota-container input,
+        .rota-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        .rota-container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        a.mapa-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        a.mapa-link:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="rota-container">
+            <h1>🧠 FluxIA: Roteirizador Inteligente</h1>
+            <input id="origem" type="text" placeholder="Endereço de origem">
+            <input id="destino" type="text" placeholder="Endereço de destino">
+            <select id="transporte">
+                <option value="driving-car">🚗 Carro</option>
+                <option value="driving-hgv">🚚 Veículo Pesado</option>
+                <option value="cycling-regular">🚴 Bicicleta</option>
+                <option value="foot-walking">🚶 A pé</option>
+            </select>
+            <button onclick="calcularRota()">Calcular Rota</button>
+            <div id="map"></div>
+            <div id="info"></div>
+            <div id="link-maps"></div>
+        </div>
+    </main>
+
+    <script>
+        const API_KEY = '5b3ce3597851110001cf62483a51d82e529d4163b51e41fe65a09b86';
+
+        let map = L.map('map').setView([-23.5617, -46.6559], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        let rotaLayer;
+
+        async function obterCoordenadas(endereco) {
+            const url = `https://api.openrouteservice.org/geocode/search?api_key=${API_KEY}&text=${encodeURIComponent(endereco)}`;
+            const resposta = await fetch(url);
+            const dados = await resposta.json();
+            return dados.features[0].geometry.coordinates.reverse();
+        }
+
+        async function calcularRota() {
+            const origem = document.getElementById('origem').value;
+            const destino = document.getElementById('destino').value;
+            const transporte = document.getElementById('transporte').value;
+
+            if (!origem || !destino) return alert('Preencha os dois endereços.');
+
+            try {
+                const coordOrigem = await obterCoordenadas(origem);
+                const coordDestino = await obterCoordenadas(destino);
+
+                const body = {
+                    coordinates: [coordOrigem.reverse(), coordDestino.reverse()]
+                };
+
+                const resposta = await fetch(`https://api.openrouteservice.org/v2/directions/${transporte}/geojson`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                });
+
+                const rota = await resposta.json();
+
+                if (rotaLayer) map.removeLayer(rotaLayer);
+                rotaLayer = L.geoJSON(rota, { style: { color: '#00ff88', weight: 5 } }).addTo(map);
+                map.fitBounds(rotaLayer.getBounds());
+
+                const metros = rota.features[0].properties.summary.distance;
+                const minutos = rota.features[0].properties.summary.duration / 60;
+
+                document.getElementById("info").innerHTML = `
+                        📏 Distância: <strong>${(metros / 1000).toFixed(2)} km</strong><br>
+                        ⏱️ Tempo estimado (${transporte.replace("-", " ")}): <strong>${minutos.toFixed(1)} min</strong>
+                    `;
+
+                const mapsURL = `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origem)}&destination=${encodeURIComponent(destino)}&travelmode=${getGoogleTravelMode(transporte)}`;
+
+                document.getElementById("link-maps").innerHTML = `
+                        <a class="mapa-link" href="${mapsURL}" target="_blank">Abrir no Google Maps 📍</a>
+                    `;
+
+            } catch (erro) {
+                console.error(erro);
+                alert("Erro ao calcular a rota. Verifique os endereços.");
+            }
+        }
+
+        function getGoogleTravelMode(modoORS) {
+            switch (modoORS) {
+                case 'foot-walking': return 'walking';
+                case 'cycling-regular': return 'bicycling';
+                case 'driving-car':
+                case 'driving-hgv': return 'driving';
+                default: return 'driving';
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração - Configurações</title>
+    <link rel="stylesheet" href="styleestoque.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>FluxIA</h2>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="indexestoque.html"><span class="material-icons">dashboard</span> Painel</a></li>
+                <li><a href="usuario.html"><span class="material-icons">person</span> Usuários</a></li>
+                <li><a href="#" class="active"><span class="material-icons">settings</span> Configurações</a></li>
+                <li><a href="relatorio.html"><span class="material-icons">bar_chart</span> Relatórios</a></li>
+            </ul>
+        </aside>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="header-title">
+                    <h1>Configurações do Sistema</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span>Bem-vindo, Admin</span>
+                        <span class="material-icons">account_circle</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-sections">
+                 <section id="settings-section" class="content-area">
+                    <h2>Configurações do Sistema</h2>
+                     <div class="card">
+                        <div class="card-content">
+                            <h3>Ajustes Gerais</h3>
+                            <p>Configure as opções gerais do sistema aqui.</p>
+                            </div>
+                    </div>
+                     <div class="data-table" style="margin-top: 20px;">
+                         <p>Nome do Site: <input type="text" placeholder="Digite o nome do site"></p>
+                         <p>Fuso Horário:
+                             <select>
+                                 <option value="UTC-3">UTC-3</option>
+                                 <option value="UTC-4">UTC-4</option>
+                                 <option value="UTC-5">UTC-5</option>
+                             </select>
+                         </p>
+                         <p><input type="checkbox"> Habilitar Modo de Manutenção</p>
+                         <p><input type="checkbox" checked> Permitir Novas Inscrições</p>
+                         <button class="button" style="margin-top: 10px;">Salvar Configurações Gerais</button>
+                     </div>
+
+                     <div class="card" style="margin-top: 20px;">
+                        <div class="card-content">
+                            <h3>Configurações de Email</h3>
+                            <p>Configure as opções de envio de email.</p>
+                        </div>
+                    </div>
+                     <div class="data-table" style="margin-top: 20px;">
+                         <p>Servidor SMTP: <input type="text" placeholder="smtp.example.com"></p>
+                         <p>Porta SMTP: <input type="text" placeholder="587"></p>
+                         <p>Usuário SMTP: <input type="text" placeholder="seu_email@example.com"></p>
+                         <p>Senha SMTP: <input type="password" placeholder="********"></p>
+                         <button class="button" style="margin-top: 10px;">Testar e Salvar Configurações de Email</button>
+                     </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="scriptestoque.js"></script>
+</body>
+</html>

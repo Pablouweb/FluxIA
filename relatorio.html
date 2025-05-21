@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração - Relatórios</title>
+    <link rel="stylesheet" href="styleestoque.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>FluxIA</h2>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="indexestoque.html"><span class="material-icons">dashboard</span> Painel</a></li>
+                <li><a href="usuario.html"><span class="material-icons">person</span> Usuários</a></li>
+                <li><a href="configuracao.html"><span class="material-icons">settings</span> Configurações</a></li>
+                <li><a href="#" class="active"><span class="material-icons">bar_chart</span> Relatórios</a></li>
+            </ul>
+        </aside>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="header-title">
+                    <h1>Visualização de Relatórios</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span>Bem-vindo, Admin</span>
+                        <span class="material-icons">account_circle</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-sections">
+                 <section id="reports-section" class="content-area">
+                    <h2>Relatórios do Sistema</h2>
+                     <div class="card">
+                        <div class="card-content">
+                            <h3>Relatórios Gerados</h3>
+                            <p>Visualize diferentes relatórios sobre dados do sistema.</p>
+                            </div>
+                    </div>
+                     <div class="data-table" style="margin-top: 20px;">
+                         <table>
+                            <thead>
+                                <tr>
+                                    <th>Nome do Relatório</th>
+                                    <th>Tipo</th>
+                                    <th>Última Geração</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Relatório de Vendas Mensais</td>
+                                    <td>Financeiro</td>
+                                    <td>2023-10-31</td>
+                                    <td><button class="button">Ver</button> <button class="button">Gerar Novamente</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Relatório de Usuários Ativos</td>
+                                    <td>Usuários</td>
+                                    <td>2023-11-01</td>
+                                    <td><button class="button">Ver</button> <button class="button">Gerar Novamente</button></td>
+                                </tr>
+                                <tr>
+                                    <td>Relatório de Tráfego do Site</td>
+                                    <td>Analytics</td>
+                                    <td>2023-11-01</td>
+                                    <td><button class="button">Ver</button> <button class="button">Gerar Novamente</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                     </div>
+
+                      <div class="card" style="margin-top: 20px;">
+                        <div class="card-content">
+                            <h3>Gerar Novo Relatório</h3>
+                            <p>Selecione as opções para gerar um novo relatório personalizado.</p>
+                        </div>
+                    </div>
+                     <div class="data-table" style="margin-top: 20px;">
+                         <p>Tipo de Relatório:
+                             <select>
+                                 <option value="vendas">Vendas</option>
+                                 <option value="usuarios">Usuários</option>
+                                 <option value="trafego">Tráfego</option>
+                                 <option value="customizado">Customizado</option>
+                             </select>
+                         </p>
+                         <p>Período:
+                             <input type="date"> a <input type="date">
+                         </p>
+                         <button class="button" style="margin-top: 10px;">Gerar Relatório</button>
+                     </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="scriptestoque.js"></script>
+</body>
+</html>

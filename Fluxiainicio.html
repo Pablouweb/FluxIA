@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FluxIA - Início</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to right, #0f0c29, #302b63, #24243e);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    header {  
+      background: rgba(0, 0, 0, 0.8);
+      /* opaco para não ver o fundo */
+      backdrop-filter: blur(8px);
+      /* efeito "glassmorphism" */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-shadow: 0 0 15px #000;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      animation: slideInDown 1s ease-out;
+    }
+
+    header h1 {
+      font-size: 24px;
+      color: #00bfff;
+      margin-bottom: 10px;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      padding: 10px 20px;
+      border: 2px solid #00bfff;
+      border-radius: 8px;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
+      width: 90%;
+      text-align: center;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: #00bfff;
+      z-index: -1;
+      transition: 0.4s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    nav a:hover {
+      color: #fff;
+      box-shadow: 0 0 10px #00bfff, 0 0 20px #00bfff;
+    }
+
+    .container {
+      text-align: center;
+      margin-top: 60px;
+      padding: 20px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .container h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      animation: slideInUp 1s ease;
+    }
+
+    .container p {
+      font-size: 16px;
+      color: #ccc;
+      margin: auto;
+      animation: fadeIn 2s ease;
+    }
+
+    .container img {
+      margin-top: 30px;
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .imagemfluxia {
+      filter: drop-shadow(3.5px 3.5px 3.5px #0157b9);
+      animation: zoomIn 1.8s ease, pulseGlow 2.5s infinite alternate;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 0 15px rgba(0, 191, 255, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s ease;
+    }
+
+    .card h2 {
+      color: #00bfff;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .card p,
+    .card ul {
+      color: #ccc;
+      font-size: 15px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .card li {
+      margin-bottom: 10px;
+      padding-left: 10px;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px rgba(0, 191, 255, 0.3);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideInDown {
+      from {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideInUp {
+      from {
+        transform: translateY(50px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulseGlow {
+      from {
+        box-shadow: 0 0 10px rgba(0, 191, 255, 0.2), 0 0 20px rgba(0, 191, 255, 0.2), 0 0 40px rgba(0, 191, 255, 0.2);
+      }
+
+      to {
+        box-shadow: 0 0 20px rgba(0, 191, 255, 0.6), 0 0 40px rgba(0, 191, 255, 0.6), 0 0 60px rgba(0, 191, 255, 0.6);
+      }
+    }
+
+    @media (min-width: 600px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 20px 40px;
+      }
+
+      nav {
+        flex-direction: row;
+        width: auto;
+        gap: 20px;
+      }
+
+      nav a {
+        width: auto;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 15px 20px;
+      }
+
+      header h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      nav {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      nav a {
+        margin: 5px 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      .container h2 {
+        font-size: 28px;
+      }
+
+      .container p {
+        font-size: 16px;
+      }
+
+      .container {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>FluxIA</h1>
+    <nav>
+      <a href="index.html">Cadastro</a>
+      <a href="calcular rotas.html">Calcular Rota</a>
+      <a href="indexestoque.html">Sistema de Estoque</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Bem-vindo ao FluxIA</h2>
+    <p>Um sistema inteligente para otimizar a logística, calcular rotas e gerenciar estoques com eficiência.</p>
+    <img class="imagemfluxia" src="FluxIA.png" alt="Logística FluxIA">
+  </div>
+
+  <!-- NOVOS CARDS NAS LATERAIS -->
+  <div class="info-grid">
+    <div class="card">
+      <h2>O que é o FluxIA?</h2>
+      <p>FluxIA é uma solução moderna que integra inteligência artificial à logística, melhorando decisões e
+        produtividade.</p>
+    </div>
+
+    <div class="card">
+      <h2>Funcionalidades</h2>
+      <ul>
+        <li>🧭 Cálculo de rotas inteligentes com mapas interativos.</li>
+        <li>📦 Controle e atualização em tempo real de estoque.</li>
+        <li>📊 Relatórios analíticos baseados em IA.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Vantagens</h2>
+      <p>Com o FluxIA, você reduz custos logísticos, melhora a experiência do cliente e toma decisões mais informadas
+        com base em dados em tempo real.</p>
+    </div>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+
+</html>

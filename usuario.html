@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração - Usuários</title>
+    <link rel="stylesheet" href="styleestoque.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>FluxIA</h2>
+            </div>
+            <ul class="sidebar-nav">
+                <li><a href="indexestoque.html"><span class="material-icons">dashboard</span> Painel</a></li>
+                <li><a href="#" class="active"><span class="material-icons">person</span> Usuários</a></li>
+                <li><a href="configuracao.html"><span class="material-icons">settings</span> Configurações</a></li>
+                <li><a href="relatorio.html"><span class="material-icons">bar_chart</span> Relatórios</a></li>
+            </ul>
+        </aside>
+
+        <div class="main-content">
+            <header class="header">
+                <div class="header-title">
+                    <h1>Gerenciamento de Usuários</h1>
+                </div>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span>Bem-vindo, Admin</span>
+                        <span class="material-icons">account_circle</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-sections">
+                <section id="users-section" class="content-area">
+                    <h2>Gerenciamento de Usuários</h2>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3>Lista de Usuários</h3>
+                            <p>Aqui você pode visualizar, adicionar, editar e remover usuários.</p>
+                            </div>
+                    </div>
+                    <div class="data-table" style="margin-top: 20px;">
+                         <table>
+                            <thead>
+                                <tr>
+                                    <th>ID do Usuário</th>
+                                    <th>Nome</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>101</td>
+                                    <td>João Silva</td>
+                                    <td>joao.silva@example.com</td>
+                                    <td>Ativo</td>
+                                    <td><button class="button">Editar</button> <button class="button">Excluir</button></td>
+                                </tr>
+                                <tr>
+                                    <td>102</td>
+                                    <td>Maria Souza</td>
+                                    <td>maria.souza@example.com</td>
+                                    <td>Inativo</td>
+                                    <td><button class="button">Editar</button> <button class="button">Excluir</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <script src="scriptestoque.js"></script>
+</body>
+</html>
